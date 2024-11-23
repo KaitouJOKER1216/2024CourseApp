@@ -4,13 +4,13 @@ using namespace std;
 
 int main()
 {
-	Person personl("A123456789", "Wang", "XiaoMing", "M", "1999-01-01");
+	Person personl("A314159265", "馬", "浩寧", "M", "1998-06-21");
 	Person* person2=new Person();
-	person2->setId("B123456789");
-	person2->setLastName("Li");
-	person2->setFirstName("XiaoHong");
+	person2->setId("B161803398");
+	person2->setLastName("杜");
+	person2->setFirstName("海皇");
 	person2->setGender("M");
-	person2->setBirthDate("1999-01-01");
+	person2->setBirthDate("1999-03-14");
 
 	personl.display();
 	cout << endl;
