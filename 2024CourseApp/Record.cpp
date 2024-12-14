@@ -1,13 +1,10 @@
 #include "Record.h"
 #include<iostream>
+#include<iomanip>
 using namespace std;
 
-Record::Record()
-{
-	
-}
-
-Record::Record(string& studentId, string& courseId) :studentId(studentId), courseId(courseId), recordId(nextId++),recordData(time)
+int Record::nextId = 1;
+Record::Record(const string& studentId, const string& courseId) :studentId(studentId), courseId(courseId),recordId(nextId++),recordData(time(0))
 {
 
 }

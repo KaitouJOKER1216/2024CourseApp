@@ -7,16 +7,14 @@ class Record
 {
 private:
 	static int nextId;
-	int recordId;
+	int recordId;//靜態變數，用來記錄選課的流水號
 	string studentId;
 	string courseId;
 	time_t recordData;
 public:
-	Record();
-	Record(string& studentId, string& courseId);
-
+	Record(const string& studentId,const string& courseId);
 	
-	string getRecordId() const;
+	int getRecordId() const;
 	string getStudentId() const;
 	string getCourseId() const;
 	string getRecordData() const;
