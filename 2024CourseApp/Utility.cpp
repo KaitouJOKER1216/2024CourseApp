@@ -13,6 +13,8 @@ string Utility::toString(Department department)
 		return "電子工程系";
 	case Department::InformationManagement:
 		return "資訊管理系";
+	case Department::MechanicalEngineering:
+		return "機械工程系";
 	default:
 		return "Unknow Department";
 	}

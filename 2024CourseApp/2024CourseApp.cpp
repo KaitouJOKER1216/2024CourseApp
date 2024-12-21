@@ -61,11 +61,11 @@ Person personl("A314159265", "馬", "浩寧", "M", "1998-06-21");
 	courses.push_back(Course("C005", "Visual Basic Programming", "這門課教授Visual Basic程式語言"));
 
 	//新增五筆學生資訊
-	students.push_back(Student("A314159265", "馬", "浩寧", "M", "1998-06-21", "B123456789", Department::ComputerScience, ClassName::_1A));
-	students.push_back(Student("B161803398", "杜", "海皇", "M", "1999-03-14", "B987654321", Department::ComputerScience, ClassName::_1A));
-	students.push_back(Student("C112358132", "高", "斯", "M", "1997-12-31", "B246813579", Department::InformationManagement, ClassName::_1B));
-	students.push_back(Student("D141421356", "小", "傲", "M", "1996-09-15", "B369258147", Department::InformationManagement, ClassName::_2A));
-	students.push_back(Student("E173205080", "賈", "慶", "M", "1995-02-28", "B582469371", Department::ElectricalEngineering, ClassName::_2B));
+	students.push_back(Student("A314159265", "馬", "浩寧", "M", "1998-06-21", "4B3G0001", Department::ComputerScience, ClassName::_1A));
+	students.push_back(Student("B161803398", "杜", "海皇", "M", "1999-03-14", "4B3G0002", Department::ComputerScience, ClassName::_1A));
+	students.push_back(Student("C112358132", "高", "斯", "M", "1997-12-31", "4B3G0003", Department::InformationManagement, ClassName::_1B));
+	students.push_back(Student("D141421356", "小", "傲", "M", "1996-09-15", "4B3G0004", Department::InformationManagement, ClassName::_2A));
+	students.push_back(Student("E173205080", "賈", "慶", "M", "1995-02-28", "4B3G0005", Department::ElectricalEngineering, ClassName::_2B));
 
 	//新增兩筆教師資訊
 	vector<Course> teacher1_courses = { courses[0], courses[1], courses[2] };
@@ -89,11 +89,17 @@ void displayMenu()
 {
 	int choice;
 	do {
+		system("cls");
 		cout << "======================" << endl;
 		cout << "1.列出學生資料" << endl;
 		cout << "2.列出課程資料" << endl;
 		cout << "3.列出教師資料" << endl;
 		cout << "4.列出選課紀錄" << endl;
+		cout << "5.查詢學生資料" << endl;
+		cout << "6.查詢課程資料" << endl;
+		cout << "7.查詢教師資料" << endl;
+		cout << "8.查詢選課紀錄" << endl;
+		cout << "9.新增學生資料" << endl;
 		cout << "0.結束" << endl;
 		cout << "請選擇操作:";
 		cin >> choice;
@@ -104,23 +110,51 @@ void displayMenu()
 		case 1:
 			cout << "列出學生資料" << endl;
 			listStudents();
+			system("pause");
 			break;
 		case 2:
 			cout << "列出課程資料" << endl;
 			listCourses();
+			system("pause");
 			break;
 		case 3:
 			cout << "列出教師資料" << endl;
 			listTeachers();
+			system("pause");
 			break;
 		case 4:
+			cout << "列出選課紀錄" << endl;
 			listRecords();
+			system("pause");
+			break;
+		case 5:
+			cout << "查詢學生資料" << endl;
+			queryStudent();
+			system("pause");
+			break;
+		case 6:
+			cout << "查詢課程資料" << endl;
+			system("pause");
+			break;
+		case 7:
+			cout << "查詢教師資料" << endl;
+			system("pause");
+			break;
+		case 8:
+			cout << "查詢選課紀錄" << endl;
+			system("pause");
+			break;
+		case 9:
+			cout << "新增學生資料" << endl;
+			addstudent();
+			system("pause");
 			break;
 		case 0:
 			cout << "謝謝使用 雨克系統" << endl;
 			break;
 		default:
 			cout << "無效選擇" << endl;
+			system("pause");
 			break;
 		}
 	} while (choice != 0);
@@ -172,4 +206,64 @@ void listRecords()
 		cout << endl;
 	}
 	cout << endl;
+}
+
+void queryStudent()
+{
+	string studentId;
+	cout << "請輸入學號:";
+	cin >> studentId;
+	bool found = false;
+	for (auto student : students)
+	{
+		if (student.getStudentId() == studentId)
+		{
+			student.display();
+			found = true;
+			break;
+		}
+	}
+	if (!found)
+	{
+		cout << "找不到學號為" << studentId << "的學生" << endl;
+	}
+}
+
+void addstudent()
+{
+	string id, lastName, firstName, birthDate, gender, studentId;
+	int departmentChoice, classNameChoice;
+
+	cout << "身分證字號:";
+	cin >> id;
+	cout << "姓:";
+	cin >> lastName;
+	cout << "名:";
+	cin >> firstName;
+	cout << "生日:";
+	cin >> birthDate;
+	cout << "性別:";
+	cin >> gender;
+	cout << "學號:";
+	cin >> studentId;
+
+	cout << "科系:" << endl;
+	for (int i = 0; i < static_cast<int>(Department::Last); i++)
+	{
+		cout << i << "." << Utility::toString(static_cast<Department>(i)) << endl;
+	}
+	cout << "請選擇科系:";
+	cin >> departmentChoice;
+	Department department = static_cast<Department>(departmentChoice);
+
+	cout << "班級:";
+	for (int i = 0; i < static_cast<int>(ClassName::Last); i++)
+	{
+		cout << i << "." << Utility::toString(static_cast<ClassName>(i)) << endl;
+	}
+	cout << "請選擇班級:";
+	cin >> classNameChoice;
+	ClassName className = static_cast<ClassName>(classNameChoice);
+
+	students.push_back(Student(id, lastName, firstName, gender, birthDate, studentId, department, className));
 }
