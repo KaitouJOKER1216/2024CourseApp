@@ -1,4 +1,4 @@
-﻿//#include "Person.h"
+﻿#include "Person.h"
 #include<string>
 #include <iostream>
 #include <vector>
@@ -100,6 +100,9 @@ void displayMenu()
 		cout << "7.查詢教師資料" << endl;
 		cout << "8.查詢選課紀錄" << endl;
 		cout << "9.新增學生資料" << endl;
+		cout << "10.新增課程資料" << endl;
+		cout << "11.新增教師資料" << endl;
+		cout << "12.新增選課紀錄" << endl;
 		cout << "0.結束" << endl;
 		cout << "請選擇操作:";
 		cin >> choice;
@@ -134,19 +137,40 @@ void displayMenu()
 			break;
 		case 6:
 			cout << "查詢課程資料" << endl;
+			queryCourse();
 			system("pause");
 			break;
 		case 7:
 			cout << "查詢教師資料" << endl;
+			queryTeacher();
 			system("pause");
 			break;
 		case 8:
 			cout << "查詢選課紀錄" << endl;
+			//queryRecord();
+			cout << "---此功能尚未開發完成---" << endl;
 			system("pause");
 			break;
 		case 9:
 			cout << "新增學生資料" << endl;
 			addstudent();
+			system("pause");
+			break;
+		case 10:
+			cout << "新增課程資料" << endl;
+			addcourse();
+			system("pause");
+			break;
+		case 11:
+			cout << "新增教師資料" << endl;
+			//addteacher();
+			cout << "---此功能尚未開發完成---" << endl;
+			system("pause");
+			break;
+		case 12:
+			cout << "新增選課紀錄" << endl;
+			//addrecord();
+			cout << "---此功能尚未開發完成---" << endl;
 			system("pause");
 			break;
 		case 0:
@@ -229,6 +253,69 @@ void queryStudent()
 	}
 }
 
+void queryCourse()
+{
+	string courseId;
+	cout << "請輸入課程代碼:";
+	cin >> courseId;
+	bool found = false;
+	for (auto course : courses)
+	{
+		if (course.getCourseId() == courseId)
+		{
+			course.display();
+			found = true;
+			break;
+		}
+	}
+	if (!found)
+	{
+		cout << "找不到代碼為" << courseId << "的課程" << endl;
+	}
+}
+
+void queryTeacher()
+{
+	string teacherId;
+	cout << "請輸入教師代號:";
+	cin >> teacherId;
+	bool found = false;
+	for (auto teacher : teachers)
+	{
+		if (teacher.getTeacherId() == teacherId)
+		{
+			teacher.display();
+			found = true;
+			break;
+		}
+	}
+	if (!found)
+	{
+		cout << "找不到代號為" << teacherId << "的教師" << endl;
+	}
+}
+
+/*void queryRecord() //無法使用
+{
+	string recordId;
+	cout << "請輸入學號:";
+	cin >> recordId;
+	bool found = false;
+	for (auto record : records)
+	{
+		if (record.getRecordId() == recordId)
+		{
+			record.display();
+			found = true;
+			break;
+		}
+	}
+	if (!found)
+	{
+		cout << "找不到代碼為" << recordId << "的選課紀錄" << endl;
+	}
+}
+*/
 void addstudent()
 {
 	string id, lastName, firstName, birthDate, gender, studentId;
@@ -267,3 +354,73 @@ void addstudent()
 
 	students.push_back(Student(id, lastName, firstName, gender, birthDate, studentId, department, className));
 }
+
+/*void addteahcer() 無法使用
+{
+	string id, lastName, firstName, birthDate, gender, teacherId;
+	int departmentChoice, classNameChoice;
+
+	cout << "身分證字號:";
+	cin >> id;
+	cout << "姓:";
+	cin >> lastName;
+	cout << "名:";
+	cin >> firstName;
+	cout << "生日:";
+	cin >> birthDate;
+	cout << "性別:";
+	cin >> gender;
+	cout << "教師代號:";
+	cin >> teacherId;
+
+	cout << "科系:" << endl;
+	for (int i = 0; i < static_cast<int>(Department::Last); i++)
+	{
+		cout << i << "." << Utility::toString(static_cast<Department>(i)) << endl;
+	}
+	cout << "請選擇科系:";
+	cin >> departmentChoice;
+	Department department = static_cast<Department>(departmentChoice);
+
+	cout << "班級:";
+	for (int i = 0; i < static_cast<int>(ClassName::Last); i++)
+	{
+		cout << i << "." << Utility::toString(static_cast<ClassName>(i)) << endl;
+	}
+	cout << "請選擇班級:";
+	cin >> classNameChoice;
+	ClassName className = static_cast<ClassName>(classNameChoice);
+
+	teachers.push_back(Teacher(id, lastName, firstName, gender, birthDate, teacherId, department, className));
+}
+*/
+void addcourse()
+{
+	string courseId,courseName, courseDescription;
+
+	cout << "課程代碼:";
+	cin >> courseId;
+	cout << "課程名稱:";
+	cin >> courseName;
+	cout << "課程描述:";
+	cin >> courseDescription;
+
+	courses.push_back(Course(courseId,courseName,courseDescription));
+}
+
+/*void addrecord() 無法使用
+{
+	string studentId,recordId,courseId,recordData;
+
+	cout << "選課序號:";
+	cin >> recordId;
+	cout << "學號:";
+	cin >> studentId;
+	cout << "課程代碼:";
+	cin >> courseId;
+	cout << "選課時間:";
+	cin >> recordData;
+
+	records.push_back(Record(studentId, recordId, courseId, recordData));
+}
+*/
