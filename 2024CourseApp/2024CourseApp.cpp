@@ -103,6 +103,13 @@ void displayMenu()
 		cout << "10.新增課程資料" << endl;
 		cout << "11.新增教師資料" << endl;
 		cout << "12.新增選課紀錄" << endl;
+		cout << "13.刪除學生資料" << endl;
+		cout << "14.刪除課程資料" << endl;
+		cout << "15.刪除教師資料" << endl;
+		cout << "16.刪除選課紀錄" << endl;
+		cout << "17.修改學生資料" << endl;
+		cout << "18.修改課程資料" << endl;
+		cout << "19.修改教師資料" << endl;
 		cout << "0.結束" << endl;
 		cout << "請選擇操作:";
 		cin >> choice;
@@ -171,6 +178,48 @@ void displayMenu()
 			cout << "新增選課紀錄" << endl;
 			//addrecord();
 			cout << "---此功能尚未開發完成---" << endl;
+			system("pause");
+			break;
+		case 13:
+			cout << "刪除學生資料" << endl;
+			//deleteStudent;
+			//cout << "---此功能尚未開發完成---" << endl;
+			system("pause");
+			break;
+		case 14:
+			cout << "刪除課程資料" << endl;
+			//deleteCourse;
+			//cout << "---此功能尚未開發完成---" << endl;
+			system("pause");
+			break;
+		case 15:
+			cout << "刪除教師資料" << endl;
+			//deleteTeacher;
+			//cout << "---此功能尚未開發完成---" << endl;
+			system("pause");
+			break;
+		case 16:
+			cout << "刪除選課紀錄" << endl;
+			//deleteRecord;
+			//cout << "---此功能尚未開發完成---" << endl;
+			system("pause");
+			break;
+		case 17:
+			cout << "修改學生資料" << endl;
+			//modifyStudent;
+			//cout << "---此功能尚未開發完成---" << endl;
+			system("pause");
+			break;
+		case 18:
+			cout << "修改課程資料" << endl;
+			//modifyCourse;
+			//cout << "---此功能尚未開發完成---" << endl;
+			system("pause");
+			break;
+		case 19:
+			cout << "修改教師資料" << endl;
+			//modifyTeacher;
+			//cout << "---此功能尚未開發完成---" << endl;
 			system("pause");
 			break;
 		case 0:
@@ -295,10 +344,10 @@ void queryTeacher()
 	}
 }
 
-/*void queryRecord() //無法使用
+void queryRecord() //無法使用
 {
 	string recordId;
-	cout << "請輸入學號:";
+	cout << "請輸入選課紀錄編號:";
 	cin >> recordId;
 	bool found = false;
 	for (auto record : records)
@@ -315,7 +364,7 @@ void queryTeacher()
 		cout << "找不到代碼為" << recordId << "的選課紀錄" << endl;
 	}
 }
-*/
+
 void addstudent()
 {
 	string id, lastName, firstName, birthDate, gender, studentId;

@@ -9,7 +9,7 @@ void listRecords();
 void queryStudent();
 void queryTeacher();
 void queryCourse();
-//void queryRecord();
+void queryRecord();
 void addstudent();
 //void addteacher();
 void addcourse();
