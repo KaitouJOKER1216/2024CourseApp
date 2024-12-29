@@ -181,43 +181,43 @@ void displayMenu()
 			break;
 		case 13:
 			cout << "刪除學生資料" << endl;
-			deleteStudent;
+			deleteStudent();
 			//cout << "---此功能尚未開發完成---" << endl;
 			system("pause");
 			break;
 		case 14:
 			cout << "刪除課程資料" << endl;
-			deleteCourse;
+			deleteCourse();
 			//cout << "---此功能尚未開發完成---" << endl;
 			system("pause");
 			break;
 		case 15:
 			cout << "刪除教師資料" << endl;
-			deleteTeacher;
+			deleteTeacher();
 			//cout << "---此功能尚未開發完成---" << endl;
 			system("pause");
 			break;
 		case 16:
 			cout << "刪除選課紀錄" << endl;
-			deleteRecord;
+			deleteRecord();
 			//cout << "---此功能尚未開發完成---" << endl;
 			system("pause");
 			break;
 		case 17:
 			cout << "修改學生資料" << endl;
-			updateStudent;
+			updateStudent();
 			//cout << "---此功能尚未開發完成---" << endl;
 			system("pause");
 			break;
 		case 18:
 			cout << "修改課程資料" << endl;
-			updateCourse;
+			updateCourse();
 			//cout << "---此功能尚未開發完成---" << endl;
 			system("pause");
 			break;
 		case 19:
 			cout << "修改教師資料" << endl;
-			updateTeacher;
+			updateTeacher();
 			//cout << "---此功能尚未開發完成---" << endl;
 			system("pause");
 			break;
@@ -349,7 +349,7 @@ void queryRecord()
 	cout << "請輸入學生學號：";
 	cin >> studentId;
 
-	for (const auto& record : records)
+	for (auto record : records)
 	{
 		if (record.getStudentId() == studentId)
 		{
@@ -534,19 +534,22 @@ void deleteTeacher()
 
 void deleteRecord()
 {
-    int recordId;
-    cout << "請輸入選課紀錄編號:";
-    cin >> recordId;
+    string studentId, courseId;
+    cout << "請輸入學生學號: ";
+    cin >> studentId;
+    cout << "請輸入課程代碼: ";
+    cin >> courseId;
     bool found = false;
     for (auto it = records.begin(); it != records.end(); it++) {
-        if (it->getRecordId() == recordId) {
+        if (it->getStudentId() == studentId && it->getCourseId() == courseId) {
             records.erase(it);
             found = true;
+            cout << "選課紀錄已刪除" << endl;
             break;
         }
     }
     if (!found) {
-        cout << "找不到編號為" << recordId << "的選課紀錄" << endl;
+        cout << "找不到該選課紀錄" << endl;
     }
 }
 
