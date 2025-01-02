@@ -15,6 +15,9 @@ public:
 
 	//getter
 	string getCourseId();
+    string getCourseId() const;
+    string getCourseName() const;
+    string getCourseDescription() const;
 	string getCourseName();
 	string getCourseDescription();
 
