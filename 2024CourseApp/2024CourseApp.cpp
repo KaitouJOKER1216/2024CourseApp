@@ -221,6 +221,10 @@ void displayMenu()
 			//cout << "---此功能尚未開發完成---" << endl;
 			system("pause");
 			break;
+			case 20
+				cout << "保存選課記錄到文件" << endl;
+				saveRecordsToFile("records.txt");
+				system("pause");
 		case 0:
 			cout << "謝謝使用 雨克系統" << endl;
 			break;
